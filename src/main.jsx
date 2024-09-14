@@ -7,6 +7,8 @@ import "./index.css";
 import Home from "./Routes/Home.jsx";
 import Dream from "./Routes/Dream.jsx";
 import About from "./Routes/About.jsx";
+import Products from "./Routes/Products.jsx";
+import Pricing from "./Routes/Pricing.jsx";
 import Root from "./Routes/root.jsx";
 import ErrorPage from "./Routes/Error.jsx";
 import Register from "./Routes/Register.jsx";
@@ -36,11 +38,47 @@ const router = createBrowserRouter([
   },
   {
     path: "/about",
-    element: <About />,
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <About />,
+      },
+    ],
+  },
+  {
+    path: "/products",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <Products />,
+      },
+    ],
+  },
+  {
+    path: "/pricing",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <Pricing />,
+      },
+    ],
   },
   {
     path: "/dream",
-    element: <Dream />,
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <Dream />,
+      },
+    ],
   },
 ]);
 
