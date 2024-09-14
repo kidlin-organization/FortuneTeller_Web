@@ -1,8 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 
 import character_taci from "../assets/character_taci.png";
 
 const Register = () => {
+  const [stepNo, setStepNo] = useState(1);
+
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    gender: "",
+    email: "",
+    password: "",
+    dateOfBirth: "",
+    timeOfBirth: "",
+    nationality: "",
+    relationshipStatus: "",
+    educationalStatus: "",
+    occupation: "",
+    favouriteNumber: "",
+    interests: [],
+    lifeGoals: [],
+    personalityTrait: "",
+    favouriteColor: "",
+    petOwnership: "",
+    religiousBelief: "",
+    beliefInPreviousLife: "",
+    beliefInAfterLife: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      if (checked) {
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: [...prevState[name], value],
+        }));
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          [name]: prevState[name].filter((item) => item !== value),
+        }));
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+
+    console.log(formData);
+  };
+
   return (
     <>
       <div class="font-[sans-serif] bg-zinc-800 md:h-screen">
@@ -29,199 +78,741 @@ const Register = () => {
                   >
                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
                   </svg>
+                  <span class="me-2">1</span>
+                  Login <span class="hidden sm:inline-flex sm:ms-2">Info</span>
+                </span>
+              </li>
+              <li class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
+                <span
+                  class={`flex items-center after:content-['/'] sm:after:hidden after:mx-2 ${
+                    stepNo >= 2 && "text-yellow-400 dark:text-yellow-500"
+                  } after:text-gray-200 dark:after:text-gray-500`}
+                >
+                  {stepNo >= 2 && (
+                    <svg
+                      class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                    </svg>
+                  )}
+                  <span class="me-2">2</span>
                   Personal{" "}
                   <span class="hidden sm:inline-flex sm:ms-2">Info</span>
                 </span>
               </li>
-              <li class="flex md:w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-200 after:border-1 after:hidden sm:after:inline-block after:mx-6 xl:after:mx-10 dark:after:border-gray-700">
-                <span class="flex items-center after:content-['/'] sm:after:hidden after:mx-2 after:text-gray-200 dark:after:text-gray-500">
-                  <span class="me-2">2</span>
-                  Account{" "}
-                  <span class="hidden sm:inline-flex sm:ms-2">Info</span>
-                </span>
-              </li>
-              <li class="flex items-center">
+              <li
+                class={`flex items-center ${
+                  stepNo >= 3 && "text-yellow-400 dark:text-yellow-500"
+                } after:text-gray-200 dark:after:text-gray-500`}
+              >
+                {stepNo >= 3 && (
+                  <svg
+                    class="w-3.5 h-3.5 sm:w-4 sm:h-4 me-2.5"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                  </svg>
+                )}
                 <span class="me-2">3</span>
-                Confirmation
+                Character{" "}
+                <span class="hidden sm:inline-flex sm:ms-2">Info</span>
               </li>
             </ol>
 
             {/* End of Progress Bar */}
 
-            <form class="max-w-lg w-full mx-auto">
-              <div class="mb-12">
-                <h3 class="text-3xl font-bold text-yellow-400">
-                  Create an account
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-2 gap-8">
-                <div>
-                  <label class="text-white text-xs block mb-2">Name</label>
-                  <div class="relative flex items-center">
-                    <input
-                      name="name"
-                      type="text"
-                      required
-                      class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
-                      placeholder="Enter firstname"
-                    />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="#bbb"
-                      stroke="#bbb"
-                      class="w-[18px] h-[18px] absolute right-2"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        cx="10"
-                        cy="7"
-                        r="6"
-                        data-original="#000000"
-                      ></circle>
-                      <path
-                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                        data-original="#000000"
-                      ></path>
-                    </svg>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+              class="max-w-lg w-full mx-auto"
+            >
+              {stepNo === 1 && (
+                <>
+                  <div class="mb-12">
+                    <h3 class="text-3xl font-bold text-yellow-400">
+                      Create an account
+                    </h3>
                   </div>
-                </div>
 
-                <div>
-                  <label class="text-white text-xs block mb-2">Surname</label>
-                  <div class="relative flex items-center">
-                    <input
-                      name="surname"
-                      type="text"
-                      required
-                      class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
-                      placeholder="Enter surname"
-                    />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="#bbb"
-                      stroke="#bbb"
-                      class="w-[18px] h-[18px] absolute right-2"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        cx="10"
-                        cy="7"
-                        r="6"
-                        data-original="#000000"
-                      ></circle>
-                      <path
-                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                        data-original="#000000"
-                      ></path>
-                    </svg>
+                  <div className="grid grid-cols-2 gap-8">
+                    <div>
+                      <label class="text-white text-xs block mb-2">Name</label>
+                      <div class="relative flex items-center">
+                        <input
+                          name="firstName"
+                          type="text"
+                          required
+                          value={formData.firstName}
+                          onChange={handleChange}
+                          class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                          placeholder="Enter firstname"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Surname
+                      </label>
+                      <div class="relative flex items-center">
+                        <input
+                          name="lastName"
+                          type="text"
+                          required
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                          placeholder="Enter surname"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="mt-8">
-                <label class="text-white text-xs block mb-2">Email</label>
-                <div class="relative flex items-center">
-                  <input
-                    name="email"
-                    type="text"
-                    required
-                    class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
-                    placeholder="Enter email"
-                  />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="#bbb"
-                    stroke="#bbb"
-                    class="w-[18px] h-[18px] absolute right-2"
-                    viewBox="0 0 682.667 682.667"
-                  >
-                    <defs>
-                      <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                        <path
-                          d="M0 512h512V0H0Z"
-                          data-original="#000000"
-                        ></path>
-                      </clipPath>
-                    </defs>
-                    <g
-                      clip-path="url(#a)"
-                      transform="matrix(1.33 0 0 -1.33 0 682.667)"
+                  <div className="mt-8">
+                    <label class="text-white text-xs block mb-2">Gender</label>
+                    <select
+                      class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                      name="gender"
+                      required
+                      value={formData.gender}
+                      onChange={handleChange}
                     >
-                      <path
-                        fill="none"
-                        stroke-miterlimit="10"
-                        stroke-width="40"
-                        d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
-                        data-original="#000000"
-                      ></path>
-                      <path
-                        d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
-                        data-original="#000000"
-                      ></path>
-                    </g>
-                  </svg>
-                </div>
-              </div>
-              <div class="mt-8">
-                <label class="text-white text-xs block mb-2">Password</label>
-                <div class="relative flex items-center">
-                  <input
-                    name="password"
-                    type="password"
-                    required
-                    class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
-                    placeholder="Enter password"
-                  />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="#bbb"
-                    stroke="#bbb"
-                    class="w-[18px] h-[18px] absolute right-2 cursor-pointer"
-                    viewBox="0 0 128 128"
-                  >
-                    <path
-                      d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
-                      data-original="#000000"
-                    ></path>
-                  </svg>
-                </div>
-              </div>
+                      <option
+                        class="text-black"
+                        value="none-prefer-not-to-specify"
+                      >
+                        None/Prefers not to Specify
+                      </option>
+                      <option class="text-black" value="male">
+                        Male
+                      </option>
+                      <option class="text-black" value="female">
+                        Female
+                      </option>
+                    </select>
+                  </div>
 
-              <div class="flex items-center mt-8">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  class="h-4 w-4 shrink-0 rounded"
-                />
-                <label for="remember-me" class="text-white ml-3 block text-sm">
-                  I accept the{" "}
-                  <a
-                    href="javascript:void(0);"
-                    class="text-yellow-500 font-semibold hover:underline ml-1"
-                  >
-                    Terms and Conditions
-                  </a>
-                </label>
-              </div>
+                  <div class="mt-8">
+                    <label class="text-white text-xs block mb-2">Email</label>
+                    <div class="relative flex items-center">
+                      <input
+                        name="email"
+                        type="text"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        placeholder="Enter email"
+                      />
+                    </div>
+                  </div>
+                  <div class="mt-8">
+                    <label class="text-white text-xs block mb-2">
+                      Password
+                    </label>
+                    <div class="relative flex items-center">
+                      <input
+                        name="password"
+                        type="password"
+                        required
+                        value={formData.password}
+                        onChange={handleChange}
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        placeholder="Enter password"
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
 
-              <div class="mt-12">
+              {stepNo === 2 && (
+                <>
+                  <div className="grid grid-cols-2 gap-8">
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Date of Birth
+                      </label>
+                      <input
+                        type="date"
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="dateOfBirth"
+                        required
+                        value={formData.dateOfBirth}
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Time of Birth (Approximate Value)
+                      </label>
+                      <input
+                        type="time"
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="timeOfBirth"
+                        required
+                        value={formData.timeOfBirth}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-8 mt-8">
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Nationality
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="nationality"
+                        required
+                        value={formData.nationality}
+                        onChange={handleChange}
+                      >
+                        <option class="text-black" value="turkey">
+                          Turkey
+                        </option>
+                        <option class="text-black" value="usa">
+                          USA
+                        </option>
+                        <option class="text-black" value="uk">
+                          UK
+                        </option>
+                        <option class="text-black" value="germany">
+                          Germany
+                        </option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Relationship Status
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="relationshipStatus"
+                        required
+                        value={formData.relationshipStatus}
+                        onChange={handleChange}
+                      >
+                        <option
+                          class="text-black"
+                          value="none-prefer-not-to-specify"
+                        >
+                          None/Prefers not to Specify
+                        </option>
+                        <option class="text-black" value="yes">
+                          Yes
+                        </option>
+                        <option class="text-black" value="no">
+                          No
+                        </option>
+                        <option class="text-black" value="mixed">
+                          Mixed
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-8 mt-8">
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Educational Status
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="educationalStatus"
+                        required
+                        value={formData.educationalStatus}
+                        onChange={handleChange}
+                      >
+                        <option
+                          class="text-black"
+                          value="none-prefer-not-specify"
+                        >
+                          None/Prefers not to Specify
+                        </option>
+                        <option class="text-black" value="primary-school">
+                          Primary School Graduate
+                        </option>
+                        <option class="text-black" value="secondary-school">
+                          Secondary School Graduate
+                        </option>
+                        <option class="text-black" value="high-school">
+                          High School Graduate/Continuing
+                        </option>
+                        <option class="text-black" value="associate-degree">
+                          Associate Degree Graduate/Continuing
+                        </option>
+                        <option class="text-black" value="bachelor-degree">
+                          Bachelor's Degree Graduate/Continuing
+                        </option>
+                        <option class="text-black" value="master-degree">
+                          Master's Degree Graduate/Continuing
+                        </option>
+                        <option class="text-black" value="doctorate-degree">
+                          Doctorate Graduate/Continuing
+                        </option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Occupation
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="occupation"
+                        required
+                        value={formData.occupation}
+                        onChange={handleChange}
+                      >
+                        <option
+                          class="text-black"
+                          value="none-prefer-not-to-specify"
+                        >
+                          None/Prefers not to Specify
+                        </option>
+                        <option class="text-black" value="software-engineer">
+                          Software Engineer
+                        </option>
+                        <option class="text-black" value="data-scientist">
+                          Data Scientist
+                        </option>
+                        <option class="text-black" value="web-developer">
+                          Web Developer
+                        </option>
+                        <option class="text-black" value="graphic-designer">
+                          Graphic Designer
+                        </option>
+                        <option class="text-black" value="project-manager">
+                          Project Manager
+                        </option>
+                        <option class="text-black" value="product-manager">
+                          Product Manager
+                        </option>
+                        <option class="text-black" value="marketing-specialist">
+                          Marketing Specialist
+                        </option>
+                        <option class="text-black" value="sales-representative">
+                          Sales Representative
+                        </option>
+                        <option class="text-black" value="customer-service">
+                          Customer Service Representative
+                        </option>
+                        <option class="text-black" value="financial-analyst">
+                          Financial Analyst
+                        </option>
+                        <option class="text-black" value="human-resources">
+                          Human Resources
+                        </option>
+                        <option class="text-black" value="operations-manager">
+                          Operations Manager
+                        </option>
+                        <option class="text-black" value="research-scientist">
+                          Research Scientist
+                        </option>
+                        <option class="text-black" value="medical-professional">
+                          Medical Professional
+                        </option>
+                        <option class="text-black" value="lawyer">
+                          Lawyer
+                        </option>
+                        <option class="text-black" value="teacher">
+                          Teacher
+                        </option>
+                        <option class="text-black" value="engineer">
+                          Engineer
+                        </option>
+                        <option class="text-black" value="accountant">
+                          Accountant
+                        </option>
+                        <option class="text-black" value="architect">
+                          Architect
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-8 mt-8">
+                    <div>
+                      <label
+                        style={{
+                          color: "white",
+                          fontSize: "0.75rem",
+                          marginBottom: "0.5rem",
+                          display: "block",
+                        }}
+                      >
+                        Favourite Number
+                      </label>
+                      <input
+                        type="number"
+                        style={{
+                          WebkitAppearance: "none",
+                          MozAppearance: "textfield",
+                          width: "100%",
+                          backgroundColor: "transparent",
+                          color: "white",
+                          borderBottom: "1px solid #D1D5DB",
+                          outline: "none",
+                          padding: "0.75rem 0.5rem",
+                        }}
+                        name="favouriteNumber"
+                        placeholder="Enter your favourite number"
+                        min="0"
+                        step="1"
+                        required
+                        value={formData.favouriteNumber}
+                        onChange={handleChange}
+                      />
+                      <style jsx>{`
+                        /* Remove the number input spinners */
+                        input[type="number"]::-webkit-inner-spin-button,
+                        input[type="number"]::-webkit-outer-spin-button {
+                          -webkit-appearance: none;
+                          margin: 0;
+                        }
+                      `}</style>
+                    </div>
+
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Nationality
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="nationality"
+                        required
+                        value={formData.nationality}
+                        onChange={handleChange}
+                      >
+                        <option class="text-black" value="turkey">
+                          Turkey
+                        </option>
+                        <option class="text-black" value="usa">
+                          USA
+                        </option>
+                        <option class="text-black" value="uk">
+                          UK
+                        </option>
+                        <option class="text-black" value="germany">
+                          Germany
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {stepNo === 3 && (
+                <>
+                  <div className="grid grid-cols-2 gap-8 mt-8">
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Interests/Hobbies
+                      </label>
+                      <div class="flex flex-col gap-2">
+                        <label class="text-white text-xs block">
+                          <input
+                            type="checkbox"
+                            name="interests"
+                            value="reading"
+                            class="mr-2"
+                            onChange={handleChange}
+                            checked={formData.interests.includes("reading")}
+                          />
+                          Reading
+                        </label>
+                        <label class="text-white text-xs block">
+                          <input
+                            type="checkbox"
+                            name="interests"
+                            value="sports"
+                            class="mr-2"
+                            onChange={handleChange}
+                            checked={formData.interests.includes("sports")}
+                          />
+                          Sports
+                        </label>
+                        <label class="text-white text-xs block">
+                          <input
+                            type="checkbox"
+                            name="interests"
+                            value="traveling"
+                            class="mr-2"
+                            onChange={handleChange}
+                            checked={formData.interests.includes("traveling")}
+                          />
+                          Traveling
+                        </label>
+                        <label class="text-white text-xs block">
+                          <input
+                            type="checkbox"
+                            name="interests"
+                            value="music"
+                            class="mr-2"
+                            onChange={handleChange}
+                            checked={formData.interests.includes("music")}
+                          />
+                          Music
+                        </label>
+                        {/* Add more hobbies as needed */}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Life Goals
+                      </label>
+                      <div class="flex flex-col gap-2">
+                        <label class="text-white text-xs block">
+                          <input
+                            type="checkbox"
+                            name="lifeGoals"
+                            value="travel-the-world"
+                            class="mr-2"
+                            onChange={handleChange}
+                            checked={formData.lifeGoals.includes(
+                              "travel-the-world"
+                            )}
+                          />
+                          Travel the world
+                        </label>
+                        <label class="text-white text-xs block">
+                          <input
+                            type="checkbox"
+                            name="lifeGoals"
+                            value="start-a-business"
+                            class="mr-2"
+                            onChange={handleChange}
+                            checked={formData.lifeGoals.includes(
+                              "start-a-business"
+                            )}
+                          />
+                          Start a business
+                        </label>
+                        <label class="text-white text-xs block">
+                          <input
+                            type="checkbox"
+                            name="lifeGoals"
+                            value="write-a-book"
+                            class="mr-2"
+                            onChange={handleChange}
+                            checked={formData.lifeGoals.includes(
+                              "write-a-book"
+                            )}
+                          />
+                          Write a book
+                        </label>
+                        <label class="text-white text-xs block">
+                          <input
+                            type="checkbox"
+                            name="lifeGoals"
+                            value="learn-a-new-skill"
+                            class="mr-2"
+                            onChange={handleChange}
+                            checked={formData.lifeGoals.includes(
+                              "learn-a-new-skill"
+                            )}
+                          />
+                          Learn a new skill
+                        </label>
+                        {/* Add more life goals as needed */}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-8 mt-8">
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Personality Trait
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="personalityTrait"
+                        required
+                        value={formData.personalityTrait}
+                        onChange={handleChange}
+                      >
+                        <option class="text-black" value="introvert">
+                          Introvert
+                        </option>
+                        <option class="text-black" value="extrovert">
+                          Extrovert
+                        </option>
+                        <option class="text-black" value="ambivert">
+                          Ambivert
+                        </option>
+                        <option class="text-black" value="optimist">
+                          Optimist
+                        </option>
+                        <option class="text-black" value="pessimist">
+                          Pessimist
+                        </option>
+                        {/* Add more traits as needed */}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Favourite Color
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="favouriteColor"
+                        required
+                        value={formData.favouriteColor}
+                        onChange={handleChange}
+                      >
+                        <option class="text-black" value="red">
+                          Red
+                        </option>
+                        <option class="text-black" value="blue">
+                          Blue
+                        </option>
+                        <option class="text-black" value="green">
+                          Green
+                        </option>
+                        <option class="text-black" value="yellow">
+                          Yellow
+                        </option>
+                        <option class="text-black" value="purple">
+                          Purple
+                        </option>
+                        {/* Add more colors as needed */}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-8 mt-8">
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Pet Ownership
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="petOwnership"
+                        required
+                        value={formData.petOwnership}
+                        onChange={handleChange}
+                      >
+                        <option class="text-black" value="yes">
+                          Yes
+                        </option>
+                        <option class="text-black" value="no">
+                          No
+                        </option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Religious Belief
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="religiousBelief"
+                        required
+                        value={formData.religiousBelief}
+                        onChange={handleChange}
+                      >
+                        <option
+                          class="text-black"
+                          value="none-prefer-not-to-specify"
+                        >
+                          None/Prefers not to Specify
+                        </option>
+                        <option class="text-black" value="christianity">
+                          Christianity
+                        </option>
+                        <option class="text-black" value="islam">
+                          Islam
+                        </option>
+                        <option class="text-black" value="judaism">
+                          Judaism
+                        </option>
+                        <option class="text-black" value="buddhism">
+                          Buddhism
+                        </option>
+                        <option class="text-black" value="hinduism">
+                          Hinduism
+                        </option>
+                        {/* Add more beliefs as needed */}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-8 mt-8">
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Belief in Previous Life
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="beliefInPreviousLife"
+                        required
+                        value={formData.beliefInPreviousLife}
+                        onChange={handleChange}
+                      >
+                        <option class="text-black" value="yes">
+                          Yes
+                        </option>
+                        <option class="text-black" value="no">
+                          No
+                        </option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label class="text-white text-xs block mb-2">
+                        Belief in After Life
+                      </label>
+                      <select
+                        class="w-full bg-transparent text-sm text-white border-b border-gray-300 focus:border-yellow-400 px-2 py-3 outline-none"
+                        name="beliefInAfterLife"
+                        required
+                        value={formData.beliefInAfterLife}
+                        onChange={handleChange}
+                      >
+                        <option class="text-black" value="yes">
+                          Yes
+                        </option>
+                        <option class="text-black" value="no">
+                          No
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              <div
+                class={`mt-12 flex ${
+                  stepNo == 1 ? "justify-end" : "justify-between"
+                } `}
+              >
+                {stepNo > 1 && (
+                  <button
+                    onClick={() => setStepNo((prev) => prev - 1)}
+                    class="text-white text-xs font-bold bg-yellow-400 px-6 py-3 rounded-md"
+                  >
+                    Back
+                  </button>
+                )}
                 <button
-                  type="button"
-                  class="w-max shadow-xl py-3 px-6 text-sm text-gray-800 font-semibold rounded-md bg-transparent bg-yellow-400 hover:bg-yellow-500 focus:outline-none"
+                  onClick={() => setStepNo((prev) => prev + 1)}
+                  class="text-white text-xs font-bold bg-yellow-400 px-6 py-3 rounded-md"
                 >
-                  Next Step: Account Info
+                  {stepNo < 3 ? "Next" : "Register"}
                 </button>
-                <p class="text-sm text-white mt-8">
-                  Already have an account?{" "}
-                  <a
-                    href="javascript:void(0);"
-                    class="text-yellow-400 font-semibold hover:underline ml-1"
-                  >
-                    Login here
-                  </a>
-                </p>
               </div>
             </form>
           </div>
