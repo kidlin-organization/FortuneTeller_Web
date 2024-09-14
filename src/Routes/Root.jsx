@@ -11,13 +11,13 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Home Page", href: "#", current: true },
-  { name: "About", href: "#", current: false },
-  { name: "Products", href: "#", current: false },
-  { name: "Pricing", href: "#", current: false },
+  { name: "Home Page", href: "/home", current: true },
+  { name: "About", href: "/about", current: false },
+  { name: "Products", href: "/products", current: false },
+  { name: "Pricing", href: "/pricing", current: false },
 ];
 
 function classNames(...classes) {
@@ -52,9 +52,9 @@ const Root = () => {
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       aria-current={item.current ? "page" : undefined}
                       className={classNames(
                         item.current
@@ -64,7 +64,7 @@ const Root = () => {
                       )}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -147,9 +147,11 @@ const Root = () => {
           </div>
         </DisclosurePanel>
       </Disclosure>
+
       <div id="detail">
         <Outlet />
       </div>
+
       {/* Footer Section */}
       <footer class="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-zinc-900 dark:text-white">
         <div class="container pt-9">
