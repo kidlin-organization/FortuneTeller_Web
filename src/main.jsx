@@ -11,9 +11,21 @@ import Products from "./Routes/Products.jsx";
 import Pricing from "./Routes/Pricing.jsx";
 import Root from "./Routes/root.jsx";
 import ErrorPage from "./Routes/Error.jsx";
+import Login from "./Routes/Login.jsx";
 import Register from "./Routes/Register.jsx";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+    ],
+  },
   {
     path: "/",
     element: <Root />,
@@ -26,8 +38,19 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/login",
+    // element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "",
+        element: <Login />,
+      },
+    ],
+  },
+  {
     path: "/register",
-    element: <Root />,
+    // element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
