@@ -1,7 +1,10 @@
 import React from "react";
 
-import character_taci from "../assets/character_taci.png";
 import Carousel from "../Components/Carousel/Carousel";
+
+import main_characters from "../assets/characters/main_characters.webp";
+import orunis from "../assets/characters/orunis_portre.png";
+import lunaris from "../assets/characters/lunaris_portre.png";
 
 const Home = () => {
   return (
@@ -46,7 +49,7 @@ const Home = () => {
           </div>
           <div className="flex-1 text-center mt-7 lg:mt-0 lg:ml-3">
             <img
-              src={character_taci}
+              src={main_characters}
               className="w-full mx-auto sm:w-10/12  lg:w-full rounded-xl"
             />
           </div>
@@ -69,36 +72,35 @@ const Home = () => {
             <div class="items-center bg-gray-50 rounded-lg shadow sm:flex dark:bg-zinc-800 dark:border-gray-700">
               <a href="#">
                 <img
-                  class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                  alt="Bonnie Avatar"
+                  class="md:w-1/3 min-w-max rounded-lg sm:rounded-none sm:rounded-l-lg"
+                  src={orunis}
+                  alt="Orunis Avatar"
                 />
               </a>
-              <div class="p-5 m-auto">
+              <div class="md:w-2/3 p-5 m-auto">
                 <h3 class="md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Character 0</a>
+                  <a href="#">Orunis</a>
                 </h3>
                 <span class="text-gray-500 dark:text-gray-400 md:text-lg">
-                  Relationship Expert
+                  Fortune Telling Expert
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400 md:text-lg">
-                  It instantly interprets the fortune-telling pictures you send
-                  and informs you.
+                  "I am Orunis, a sage who understands the flow of time and sees
+                  traces of the future. I find the ancient knowledge echoing in
+                  the universe within the silence inside me. The Orb of Wisdom I
+                  carry whispers to me the stories of the past and the future.
+                  In this world where everything is interconnected, I can be a
+                  guide to illuminate your path. If you listen to the voice
+                  within, I can offer you a sign that will show you the right
+                  way."
                 </p>
                 <a
                   href="javascript:void(0)"
                   className="px-7 py-3 w-full bg-yellow-500 text-gray-100 text-center rounded-md shadow-md block sm:w-auto md:text-lg"
                 >
-                  Meet the Character 0
+                  Meet the Orunis
                 </a>
               </div>
-              <a href="#">
-                <img
-                  class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/sofia-mcguire.png"
-                  alt="Bonnie Avatar"
-                />
-              </a>
             </div>
           </div>
           <div class="grid gap-8 mb-6 lg:mb-16 md:grid-cols-2">
@@ -106,26 +108,33 @@ const Home = () => {
               <a href="#">
                 <img
                   class="w-full rounded-lg sm:rounded-none sm:rounded-l-lg"
-                  src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                  src={lunaris}
                   alt="Bonnie Avatar"
                 />
               </a>
               <div class="p-5">
                 <h3 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Taci</a>
+                  <a href="#">Lunaris</a>
                 </h3>
                 <span class="text-gray-500 dark:text-gray-400">
-                  Fortune Telling Expert
+                  Relationship Expert
                 </span>
                 <p class="mt-3 mb-4 font-light text-gray-500 dark:text-gray-400">
-                  It instantly interprets the fortune-telling pictures you send
-                  and informs you.
+                  "I am Lunara, a sage who has grasped the secrets of love and
+                  bonds, and found balance in relationships. I can sense the
+                  deepest desires and emotions of hearts and understand the
+                  harmony between two souls. My red and gold embroidered dress
+                  symbolizes the power of love and the value of commitment.
+                  Loves lost in the cycle of time and bonds rediscovered have
+                  taught me the true nature of relationships. If you are
+                  searching for a path within the depths of your heart, I can
+                  show you the light of love and harmony."
                 </p>
                 <a
                   href="javascript:void(0)"
                   className="px-7 py-3 w-full bg-yellow-500 text-gray-100 text-center rounded-md shadow-md block sm:w-auto"
                 >
-                  Meet the Taci
+                  Meet the Lunaris
                 </a>
               </div>
             </div>
