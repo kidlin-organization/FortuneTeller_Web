@@ -26,7 +26,7 @@ function classNames(...classes) {
 
 const Root = () => {
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Disclosure as="nav" className="bg-zinc-900">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
@@ -148,12 +148,12 @@ const Root = () => {
         </DisclosurePanel>
       </Disclosure>
 
-      <div id="detail">
+      <div className="flex-grow" id="detail">
         <Outlet />
       </div>
 
       {/* Footer Section */}
-      <footer class="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-zinc-900 dark:text-white">
+      <footer class="flex flex-col items-center bg-zinc-50 text-center text-surface dark:bg-zinc-900 dark:text-white mt-auto">
         <div class="container pt-9">
           {/* <!-- Social media icons container --> */}
           <div class="mb-6 flex justify-center space-x-2">
@@ -273,7 +273,7 @@ const Root = () => {
           <a href="https://falcitaci.com/"> Fortune Teller Taci</a>
         </div>
       </footer>
-    </>
+    </div>
   );
 };
 
