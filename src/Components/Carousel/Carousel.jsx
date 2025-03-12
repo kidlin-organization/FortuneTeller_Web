@@ -50,7 +50,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto py-8 px-4 bg-zinc-800 rounded-lg border border-zinc-800">
+    <div className="relative w-full max-w-6xl mx-auto py-8 px-4 bg-zinc-800 rounded-lg">
       {/* Carousel */}
       <div className="flex overflow-hidden">
         <div
@@ -61,7 +61,7 @@ const Carousel = () => {
         >
           {comments.map((comment) => (
             <div key={comment.id} className="w-1/4 p-4 flex-shrink-0">
-              <div className="bg-zinc-800 text-white p-6 rounded-lg shadow-lg h-full relative">
+              <div className="bg-zinc-800 border border-zinc-900 text-white p-6 rounded-md shadow-lg h-full relative">
                 <blockquote className="italic mb-8">
                   “{comment.content}”
                 </blockquote>

@@ -14,3 +14,82 @@
 .animate-fade-in {
   animation: fade-in 0.5s ease-in forwards;
 }
+
+/* Tailwind'in global stil katmanına scrollbar stili ekleyelim */
+@layer utilities {
+  /* Scrollbar genişliği */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Scrollbar arkaplanı */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Varsayılan track rengi */
+  }
+
+  /* Scrollbar sapı (thumb) */
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* Kaydırma çubuğu rengi */
+    border-radius: 4px; /* Kenarları yuvarla */
+  }
+
+  /* Hover durumunda sapın (thumb) rengi */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Hover durumunda daha koyu */
+  }
+}
+
+@layer components {
+  button {
+    @apply bg-primary text-white font-semibold py-2 px-4 rounded-md 
+           hover:bg-primary-light hover:text-white text-center 
+           transition-all duration-300 hover:scale-105 
+           disabled:opacity-50 disabled:cursor-not-allowed 
+           disabled:hover:scale-100;
+  }
+}
+
+/* Yıldızlar */
+/* .star {
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+  width: 2px;
+  height: 2px;
+  opacity: 0.6;
+  animation: moveStar 3s infinite alternate ease-in-out;
+} */
+
+/* Yıldızlar */
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background-color: white;
+  opacity: 0.7;
+  will-change: transform; /* Donanım hızlandırmayı etkinleştirir */
+  animation: moveStar linear infinite alternate;
+}
+
+@keyframes moveStar {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(var(--moveX), var(--moveY));
+  }
+}
+
+/* Yavaş dönen animasyon */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 200s linear infinite;
+}
