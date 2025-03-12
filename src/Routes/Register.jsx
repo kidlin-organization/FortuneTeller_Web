@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import character_taci from "../assets/character_taci.png";
+import character_X from "../assets/character_taci.png";
 
 const Register = () => {
   const [stepNo, setStepNo] = useState(1);
@@ -58,7 +58,7 @@ const Register = () => {
         <div class="grid md:grid-cols-2 items-center -gap-8 h-full">
           <div class="max-md:order-1 p-4">
             <img
-              src={character_taci}
+              src={character_X}
               class="hidden md:block lg:max-w-[85%] w-full h-full object-contain mx-auto rounded-xl"
               alt="login-image"
             />
@@ -694,10 +694,10 @@ const Register = () => {
                             Green
                           </option>
                           <option class="text-black" value="yellow">
-                            Yellow
+                            yellow
                           </option>
-                          <option class="text-black" value="purple">
-                            Purple
+                          <option class="text-black" value="yellow">
+                            yellow
                           </option>
                           {/* Add more colors as needed */}
                         </select>
